@@ -149,7 +149,7 @@ namespace Nancy.Swagger
                 Type = GetSwaggerTypeName(pi.ParameterType)
             };
 
-            var attr = pi.GetCustomAttribute<ParameterAttribute>();
+			var attr = pi.GetCustomAttributes(typeof(ParameterAttribute), true).FirstOrDefault() as ParameterAttribute;
 
             if (attr == null)
             {

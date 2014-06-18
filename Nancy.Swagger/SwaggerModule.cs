@@ -1,9 +1,9 @@
 ﻿using Nancy.Json;
-using Nancy.Serialization.JsonNet;
 using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Linq;
+using Nancy.IO;
 
 namespace Nancy.Swagger
 {
@@ -34,7 +34,12 @@ namespace Nancy.Swagger
             var deserialized = JsonConvert.DeserializeObject(serialized);
 
             // Serialize the model to the stream
-            new JsonNetSerializer().Serialize(contentType, deserialized, stream);
+            var serializer = new JsonSerializer();
+			
+			using (var writer = new JsonTextWriter(new StreamWriter(new UnclosableStreamWrapper(stream))))
+			{
+				serializer.Serialize(writer, deserialized);
+			}
         }
 
         private Response CreateStreamedJsonResponse(dynamic model)
@@ -55,10 +60,12 @@ namespace Nancy.Swagger
 
         #region Constructors
 
-        public SwaggerModule()
+        public SwaggerModule(TinyIoc.TinyIoCContainer container)
             : base(StaticConfiguration.ModulePath)
         {
-            var modules = _discoverer.GetModulesToDocument();
+			
+            var types = _discoverer.GetModuleTypesToDocument();
+			var modules = types.Select(t => container.Resolve(t) as NancyModule);
 
             var factory = new SwaggerFactory();
 
