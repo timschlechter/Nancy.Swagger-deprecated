@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 namespace Nancy.Swagger.TestApp.Model
 {
     public class Person
@@ -11,5 +12,11 @@ namespace Nancy.Swagger.TestApp.Model
 
         [JsonProperty("address", Required = Required.AllowNull)]
         public Address Address { get; set; }
+
+		[JsonProperty("tags", Required = Required.AllowNull)]
+		public IEnumerable<string> Tags { get; set; }
+
+		[JsonProperty("friends", Required = Required.AllowNull)]
+		public Person[] Friends { get; set; }
     }
 }
