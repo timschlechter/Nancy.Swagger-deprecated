@@ -65,29 +65,30 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="swagger-ui\css\reset.css" />
-    <Content Include="swagger-ui\css\screen.css" />
-    <Content Include="swagger-ui\images\explorer_icons.png" />
-    <Content Include="swagger-ui\images\logo_small.png" />
-    <Content Include="swagger-ui\images\pet_store_api.png" />
-    <Content Include="swagger-ui\images\throbber.gif" />
-    <Content Include="swagger-ui\images\wordnik_api.png" />
-    <Content Include="swagger-ui\index.html" />
-    <Content Include="swagger-ui\lib\backbone-min.js" />
-    <Content Include="swagger-ui\lib\handlebars-1.0.0.js" />
-    <Content Include="swagger-ui\lib\highlight.7.3.pack.js" />
-    <Content Include="swagger-ui\lib\jquery-1.8.0.min.js" />
-    <Content Include="swagger-ui\lib\jquery.ba-bbq.min.js" />
-    <Content Include="swagger-ui\lib\jquery.slideto.min.js" />
-    <Content Include="swagger-ui\lib\jquery.wiggle.min.js" />
-    <Content Include="swagger-ui\lib\shred.bundle.js" />
-    <Content Include="swagger-ui\lib\shred\content.js" />
-    <Content Include="swagger-ui\lib\swagger-oauth.js" />
-    <Content Include="swagger-ui\lib\swagger.js" />
-    <Content Include="swagger-ui\lib\underscore-min.js" />
-    <Content Include="swagger-ui\o2c.html" />
-    <Content Include="swagger-ui\swagger-ui.js" />
-    <Content Include="swagger-ui\swagger-ui.min.js" />
+    <Content Include="app\css\reset.css" />
+    <Content Include="app\css\screen.css" />
+    <Content Include="app\images\explorer_icons.png" />
+    <Content Include="app\images\logo_small.png" />
+    <Content Include="app\images\pet_store_api.png" />
+    <Content Include="app\images\throbber.gif" />
+    <Content Include="app\images\wordnik_api.png" />
+    <Content Include="app\index.html" />
+    <Content Include="app\lib\backbone-min.js" />
+    <Content Include="app\lib\handlebars-1.0.0.js" />
+    <Content Include="app\lib\highlight.7.3.pack.js" />
+    <Content Include="app\lib\jquery-1.8.0.min.js" />
+    <Content Include="app\lib\jquery.ba-bbq.min.js" />
+    <Content Include="app\lib\jquery.slideto.min.js" />
+    <Content Include="app\lib\jquery.wiggle.min.js" />
+    <Content Include="app\lib\shred.bundle.js" />
+    <Content Include="app\lib\shred\content.js" />
+    <Content Include="app\lib\swagger-oauth.js" />
+    <Content Include="app\lib\swagger.js" />
+    <Content Include="app\lib\underscore-min.js" />
+    <Content Include="app\o2c.html" />
+    <Content Include="app\swagger-ui.js" />
+    <Content Include="app\swagger-ui.min.js" />
+    <Content Include="index.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

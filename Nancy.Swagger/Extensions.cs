@@ -2,6 +2,7 @@
 using Nancy.Swagger.Model;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -43,7 +44,17 @@ namespace Nancy.Swagger
         }
 
         #endregion
+
+        #region System.Typr
         
-        
+        internal static bool IsCollection(this Type type)
+        {
+            return typeof(IEnumerable).IsAssignableFrom(type)
+                && !typeof(String).IsAssignableFrom(type);
+        }
+
+        #endregion
+
+
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Nancy.Swagger.Model
 {
-    public class Operation
+    public class Operation : DataType
     {
         [JsonProperty("authorizations")]
         public Authorizations Authorizations { get; set; }
@@ -26,7 +26,5 @@ namespace Nancy.Swagger.Model
         [JsonProperty("summary")]
         public string Summary { get; set; }
 
-        [JsonProperty("type")]
-        public string Type { get; set; }
     }
 }

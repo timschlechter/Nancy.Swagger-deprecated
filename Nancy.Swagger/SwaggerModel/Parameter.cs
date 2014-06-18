@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Nancy.Swagger.Model
 {
-    public class Parameter
+    public class Parameter : DataType
     {
         /// <summary>
         /// Another way to allow multiple values for a "query" parameter. If used, the query
@@ -50,9 +50,5 @@ namespace Nancy.Swagger.Model
         /// </summary>
         [JsonProperty("required")]
         public bool Required { get; set; }
-
-        [JsonProperty("type")]
-        public string Type { get; set; }
-
     }
 }

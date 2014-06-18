@@ -55,6 +55,8 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="SwaggerFactory.cs" />
     <Compile Include="SwaggerModel\ApiDeclaration.cs" />
+    <Compile Include="SwaggerModel\DateType.cs" />
+    <Compile Include="SwaggerModel\Items.cs" />
     <Compile Include="SwaggerModel\ParamType.cs" />
     <Compile Include="SwaggerModel\SwaggerListing.cs" />
     <Compile Include="SwaggerModel\Resource.cs" />
