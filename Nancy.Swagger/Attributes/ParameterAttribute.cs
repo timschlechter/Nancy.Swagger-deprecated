@@ -1,10 +1,41 @@
-﻿using Nancy.Swagger.Model;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 namespace Nancy.Swagger
 {
-    [AttributeUsage(AttributeTargets.Parameter, Inherited=true)]
+    public class FromBodyAttribute : ParameterAttribute
+    {
+        public FromBodyAttribute()
+            : base("body", ParamType.body)
+        {
+        }
+    }
+
+    public class FromHeaderAttribute : ParameterAttribute
+    {
+        public FromHeaderAttribute(string name)
+            : base(name, ParamType.header)
+        {
+        }
+    }
+
+    public class FromPathAttribute : ParameterAttribute
+    {
+        public FromPathAttribute(string name)
+            : base(name, ParamType.path)
+        {
+            Required = true;
+        }
+    }
+
+    public class FromQueryAttribute : ParameterAttribute
+    {
+        public FromQueryAttribute(string name)
+            : base(name, ParamType.query)
+        {
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Parameter, Inherited = true)]
     public class ParameterAttribute : Attribute
     {
         #region Constructors
@@ -15,7 +46,7 @@ namespace Nancy.Swagger
             ParamType = paramType;
         }
 
-        #endregion
+        #endregion Constructors
 
         #region Properties
 
@@ -25,28 +56,6 @@ namespace Nancy.Swagger
 
         public bool Required { get; set; }
 
-        #endregion
-    }
-
-    public class FromQueryAttribute : ParameterAttribute
-    {
-        public FromQueryAttribute(string name) : base(name, ParamType.query) { }
-    }
-
-    public class FromBodyAttribute : ParameterAttribute
-    {
-        public FromBodyAttribute() : base("body", ParamType.body) { }
-    }
-
-    public class FromHeaderAttribute : ParameterAttribute
-    {
-        public FromHeaderAttribute(string name) : base(name, ParamType.header) { }
-    }
-
-    public class FromPathAttribute : ParameterAttribute
-    {
-        public FromPathAttribute(string name) : base(name, ParamType.path) {
-            Required = true;
-        }
+        #endregion Properties
     }
 }

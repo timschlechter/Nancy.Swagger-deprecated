@@ -5,7 +5,7 @@ namespace Nancy.Swagger.Model
 {
     public class Api : Resource
     {
-		[JsonProperty("operations")]
+        [JsonProperty("operations")]
         public IEnumerable<Operation> Operations { get; set; }
     }
 }

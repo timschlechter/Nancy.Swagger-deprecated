@@ -7,7 +7,5 @@ namespace Nancy.Swagger
         public MethodBase Method { get; set; }
 
         public OperationAttribute OperationAttribute { get; set; }
-
-        
     }
 }

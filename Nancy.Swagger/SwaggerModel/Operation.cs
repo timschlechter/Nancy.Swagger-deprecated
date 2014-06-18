@@ -25,6 +25,5 @@ namespace Nancy.Swagger.Model
 
         [JsonProperty("summary")]
         public string Summary { get; set; }
-
     }
 }

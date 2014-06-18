@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Nancy.Routing;
+using Nancy.Swagger.Model;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Nancy.Routing;
-using Nancy.Swagger.Model;
-using Newtonsoft.Json;
-using System.Collections;
 
 namespace Nancy.Swagger
 {
@@ -100,6 +99,24 @@ namespace Nancy.Swagger
             }
         }
 
+        public Items CreateItems(Type type)
+        {
+            if (!type.IsCollection())
+            {
+                return null;
+            }
+
+            var elementType = type.GetElementType() ?? type.GetGenericArguments().FirstOrDefault();
+            if (IsPrimitive(type))
+            {
+                return new Items { Type = GetSwaggerTypeName(elementType) };
+            }
+            else
+            {
+                return new Items { Ref = GetSwaggerTypeName(elementType) };
+            }
+        }
+
         public Model.Model CreateModel(Type type)
         {
             return new Model.Model
@@ -154,42 +171,10 @@ namespace Nancy.Swagger
             return operation;
         }
 
-        private T SetDataTypeProperties<T>(T item, Type type)
-            where T : DataType
+        public string CreatePropertyName(PropertyInfo propertyInfo)
         {
-            if (type.IsCollection())
-            {
-                item.Type = "array";
-                item.Items = CreateItems(type);
-            } 
-            else if (IsPrimitive(type))
-            {
-                item.Type = GetSwaggerTypeName(type);
-            }
-            else
-            {
-                item.Ref = GetSwaggerTypeName(type);
-            }
-
-            return item;
-        }
-
-        public Items CreateItems(Type type)
-        {
-            if (!type.IsCollection())
-            {
-                return null;
-            }
-
-            var elementType = type.GetElementType() ?? type.GetGenericArguments().FirstOrDefault();
-            if (IsPrimitive(type))
-            {
-                return new Items { Type = GetSwaggerTypeName(elementType) };
-            }
-            else
-            {
-                return new Items { Ref = GetSwaggerTypeName(elementType) };
-            }
+            var jsonPropertyAttribute = propertyInfo.GetAttribute<JsonPropertyAttribute>();
+            return jsonPropertyAttribute != null ? jsonPropertyAttribute.PropertyName : propertyInfo.Name;
         }
 
         public PropertyType CreatePropertyType(PropertyInfo propertyInfo)
@@ -203,12 +188,6 @@ namespace Nancy.Swagger
             };
 
             return SetDataTypeProperties(result, propertyInfo.PropertyType);
-        }
-
-        public string CreatePropertyName(PropertyInfo propertyInfo)
-        {
-            var jsonPropertyAttribute = propertyInfo.GetAttribute<JsonPropertyAttribute>();
-            return jsonPropertyAttribute != null ? jsonPropertyAttribute.PropertyName : propertyInfo.Name;
         }
 
         public Resource CreateResource(NancyModule module)
@@ -264,6 +243,26 @@ namespace Nancy.Swagger
         private IEnumerable<Parameter> CreateParameters(MethodBase methodBase)
         {
             return methodBase.GetParameters().Select(pi => CreateParameter(pi)).OrderBy(p => p.Name);
+        }
+
+        private T SetDataTypeProperties<T>(T item, Type type)
+            where T : DataType
+        {
+            if (type.IsCollection())
+            {
+                item.Type = "array";
+                item.Items = CreateItems(type);
+            }
+            else if (IsPrimitive(type))
+            {
+                item.Type = GetSwaggerTypeName(type);
+            }
+            else
+            {
+                item.Ref = GetSwaggerTypeName(type);
+            }
+
+            return item;
         }
 
         #endregion Methods

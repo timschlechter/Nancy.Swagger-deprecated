@@ -48,7 +48,7 @@ namespace Nancy.Swagger.Model
         /// The relative path to the resource, from the basePath, which this API Specification
         /// describes. The value MUST precede with a forward slash ("/").
         /// </summary>
-		[JsonProperty("resourcePath", Required = Required.Always)]
+        [JsonProperty("resourcePath", Required = Required.Always)]
         public string ResourcePath { get; set; }
     }
 }

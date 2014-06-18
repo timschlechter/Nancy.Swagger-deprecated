@@ -1,9 +1,7 @@
-﻿using Nancy.Json;
+﻿using Nancy.IO;
 using Newtonsoft.Json;
-using System;
 using System.IO;
 using System.Linq;
-using Nancy.IO;
 
 namespace Nancy.Swagger
 {
@@ -19,7 +17,8 @@ namespace Nancy.Swagger
             {
                 ContentType = "application/json",
                 StatusCode = HttpStatusCode.OK,
-                Contents = stream => {
+                Contents = stream =>
+                {
                     // Serialize the model to the stream
                     using (var streamWrapper = new UnclosableStreamWrapper(stream))
                     {
@@ -47,7 +46,6 @@ namespace Nancy.Swagger
         public SwaggerModule(TinyIoc.TinyIoCContainer container)
             : base(StaticConfiguration.ModulePath)
         {
-
             var types = _discoverer.GetModuleTypesToDocument();
             var modules = types.Select(t => container.Resolve(t) as NancyModule);
 

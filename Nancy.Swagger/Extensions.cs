@@ -1,6 +1,4 @@
 ﻿using Nancy.Routing;
-using Nancy.Swagger.Model;
-using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,14 +14,14 @@ namespace Nancy.Swagger
         internal static DocumentedMethod Find(this IEnumerable<DocumentedMethod> documentedMethods, NancyModule module, Route route)
         {
             var relativePath = route.Description.Path.Remove(0, module.ModulePath.Length);
-                        
+
             return documentedMethods
                         .Where(d => d.OperationAttribute.Path == relativePath)
-                        .Where(d => d.OperationAttribute.Method == route.Description.Method)                        
+                        .Where(d => d.OperationAttribute.Method == route.Description.Method)
                         .FirstOrDefault();
         }
 
-        #endregion
+        #endregion Nancy.Swagger.DocumententMethod
 
         #region System.Reflection.MemberInfo
 
@@ -32,8 +30,8 @@ namespace Nancy.Swagger
         {
             return Attribute.GetCustomAttribute(member, typeof(T)) as T;
         }
-        
-        #endregion
+
+        #endregion System.Reflection.MemberInfo
 
         #region System.Reflection.MethodBase
 
@@ -43,18 +41,16 @@ namespace Nancy.Swagger
             return Attribute.GetCustomAttribute(method, typeof(T)) as T;
         }
 
-        #endregion
+        #endregion System.Reflection.MethodBase
 
         #region System.Typr
-        
+
         internal static bool IsCollection(this Type type)
         {
             return typeof(IEnumerable).IsAssignableFrom(type)
                 && !typeof(String).IsAssignableFrom(type);
         }
 
-        #endregion
-
-
+        #endregion System.Typr
     }
 }
