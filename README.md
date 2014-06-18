@@ -16,7 +16,7 @@ public class Bootstrapper : DefaultNancyBootstrapper
 }
 ```
 
-The module will automatically discover all relevant Nancy modules in your application and return a [Resource Listing](https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md#51-resource-listing) at the given configured ModulePath. 
+The module will automatically discover all relevant Nancy modules in your application and return a [Resource Listing](https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md#51-resource-listing) at the configured ModulePath. 
 
 It also adds an endpoint for each Nancy module, at which an [API Declaration](https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md#52-api-declaration) will be returned.
 
