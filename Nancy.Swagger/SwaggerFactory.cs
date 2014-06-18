@@ -50,7 +50,7 @@ namespace Nancy.Swagger
             return new Api
             {
 				Path = path,
-                Operations = routes.Select(route => CreateOperation(route, module))
+                Operations = routes.Select(route => CreateOperation(route, module)).OrderBy(o => o.Nickname + " " + o.Method)
             };
         }
 
@@ -70,7 +70,8 @@ namespace Nancy.Swagger
         {
             return module.Routes
                          .GroupBy(r => r.Description.Path)
-                         .Select(group => CreateApi(group, module));
+                         .Select(group => CreateApi(group, module))
+						 .OrderBy(api => api.Path );
         }
 
         public IEnumerable<DocumentedMethod> CreateDocumentedMethods(NancyModule module)
@@ -200,7 +201,7 @@ namespace Nancy.Swagger
             return new ResourceListing
             {
                 SwaggerVersion = StaticConfiguration.SwaggerVersion,
-                Apis = modules.Select(m => CreateResource(m))
+                Apis = modules.Select(m => CreateResource(m)).OrderBy(a => a.Path)
             };
         }
 
