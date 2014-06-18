@@ -18,6 +18,8 @@ namespace Nancy.Swagger.TestApp
         {
             base.ApplicationStartup(container, pipelines);
 
+			Nancy.Swagger.StaticConfiguration.ModulePath = "/Some";
+
             pipelines.AfterRequest.AddItemToEndOfPipeline(context =>
             {
                 context.Response.Headers.Add("Access-Control-Allow-Origin", "*");

@@ -42,9 +42,14 @@ namespace Nancy.Swagger
 
         public Api CreateApi(IEnumerable<Route> routes, NancyModule module)
         {
+			var path = routes.First().Description.Path.Substring(module.ModulePath.Length);
+			if (String.IsNullOrEmpty(path)) {
+				path = "/";
+			}
+
             return new Api
             {
-                Path = routes.First().Description.Path,
+				Path = path,
                 Operations = routes.Select(route => CreateOperation(route, module))
             };
         }
@@ -56,7 +61,8 @@ namespace Nancy.Swagger
                 SwaggerVersion = StaticConfiguration.SwaggerVersion,
                 BasePath = CreateRoutePath(module),
                 Models = CreateModels(module).ToDictionary(t => t.Id, t => t),
-                Apis = CreateApis(module)
+                Apis = CreateApis(module),
+				ResourcePath = CreateRoutePath(module)
             };
         }
 
@@ -114,7 +120,7 @@ namespace Nancy.Swagger
             var operation = new Operation
             {
                 Method = route.Description.Method,
-                Nickname = route.Description.Path
+				Nickname = route.Description.Path
             };
 
             var documentedMethod = documentedMethods.Find(module, route);
@@ -202,7 +208,7 @@ namespace Nancy.Swagger
         {
             return new Resource
             {
-                Path = CreateRoutePath(module)
+				Path = "/swagger" + CreateRoutePath(module)
             };
         }
 
@@ -210,7 +216,7 @@ namespace Nancy.Swagger
         {
             var path = module.ModulePath.StartsWith("/") ? module.ModulePath : "/" + module.ModulePath;
 
-            return "swagger" + path;
+            return path;
         }
 
         #endregion

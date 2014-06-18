@@ -77,7 +77,7 @@ namespace Nancy.Swagger
             var apiDelacations = modules.Select(module => factory.CreateApiDeclaration(module));
             foreach (var apiDeclaration in apiDelacations)
             {
-                Get[apiDeclaration.BasePath] = _ => CreateStreamedJsonResponse(apiDeclaration);
+				Get["/swagger" + apiDeclaration.BasePath] = _ => CreateStreamedJsonResponse(apiDeclaration);
             }
         }                   
 
