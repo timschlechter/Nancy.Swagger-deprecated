@@ -38,6 +38,11 @@ namespace Nancy.Swagger
         public FromBodyAttribute() : base("body", ParamType.body) { }
     }
 
+    public class FromHeaderAttribute : ParameterAttribute
+    {
+        public FromHeaderAttribute(string name) : base(name, ParamType.header) { }
+    }
+
     public class FromPathAttribute : ParameterAttribute
     {
         public FromPathAttribute(string name) : base(name, ParamType.path) {
