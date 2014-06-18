@@ -6,7 +6,7 @@ namespace Nancy.Swagger.TestApp
     public class TestModule : NancyModule
     {
         public TestModule()
-            : base("/Test")
+            : base("/api/Test")
         {
             Get["/Persons"] = parameters => GetPersons();
             Get["/Persons/{id}"] = parameters => GetPerson(Request.Query.id);

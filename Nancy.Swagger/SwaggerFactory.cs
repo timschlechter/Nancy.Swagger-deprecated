@@ -32,7 +32,7 @@ namespace Nancy.Swagger
 			}
 			else if (isArray)
 			{
-				return GetSwaggerTypeName(type.GetElementType()) + "[]";
+                return "array of " + GetSwaggerTypeName(type.GetElementType());
 			}
 			else if (isEnumerable)
 			{
@@ -122,7 +122,7 @@ namespace Nancy.Swagger
 		{
 			return new Model.Model
 			{
-				Id = type.FullName,
+				Id = GetSwaggerTypeName(type),
 				Properties = type.GetProperties()
 								.Select(pi => CreatePropertyType(pi))
 								.ToDictionary(
@@ -162,7 +162,7 @@ namespace Nancy.Swagger
 
 				operation.Summary = attr.Summary;
 				operation.Notes = attr.Notes;
-				operation.Type = attr.Type.FullName;
+                operation.Type = GetSwaggerTypeName(attr.Type);
 				operation.Parameters = CreateParameters(documentedMethod.Method);
 			}
 

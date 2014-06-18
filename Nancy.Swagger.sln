@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Swagger", "Nancy.Swagger\Nancy.Swagger.csproj", "{CF36EFAA-88B0-4FA3-BA85-D54FA8003351}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DC204B53-13CB-4975-8B04-CD611351FD2F}"
@@ -12,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Swagger.TestApp", "Nancy.Swagger.TestApp\Nancy.Swagger.TestApp.csproj", "{ED638DD5-E755-4B7A-940D-5C94AB425686}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{AC964810-91D6-4F5D-8A4E-71BBBA2AE15B}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{AC9648
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Swagger.TestApp", "Nancy.Swagger.TestApp\Nancy.Swagger.TestApp.csproj", "{ED638DD5-E755-4B7A-940D-5C94AB425686}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Swagger.Tests.Unit", "Nancy.Swagger.Tests.Unit\Nancy.Swagger.Tests.Unit.csproj", "{9959881D-977B-4ECB-A12B-99AA38D4E7B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +35,10 @@ Global
 		{ED638DD5-E755-4B7A-940D-5C94AB425686}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED638DD5-E755-4B7A-940D-5C94AB425686}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED638DD5-E755-4B7A-940D-5C94AB425686}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9959881D-977B-4ECB-A12B-99AA38D4E7B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9959881D-977B-4ECB-A12B-99AA38D4E7B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9959881D-977B-4ECB-A12B-99AA38D4E7B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9959881D-977B-4ECB-A12B-99AA38D4E7B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
