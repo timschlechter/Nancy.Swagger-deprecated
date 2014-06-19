@@ -1,23 +1,7 @@
 ﻿using System;
 
-namespace Nancy.Swagger
+namespace Nancy.Swagger.Providers.Attributes
 {
-    public class Delete : OperationAttribute
-    {
-        public Delete(string path)
-            : base("DELETE", path)
-        {
-        }
-    }
-
-    public class Get : OperationAttribute
-    {
-        public Get(string path)
-            : base("GET", path)
-        {
-        }
-    }
-
     [AttributeUsage(AttributeTargets.Method, Inherited = true)]
     public class OperationAttribute : Attribute
     {
@@ -44,21 +28,5 @@ namespace Nancy.Swagger
         public Type Type { get; set; }
 
         #endregion Properties
-    }
-
-    public class Post : OperationAttribute
-    {
-        public Post(string path)
-            : base("POST", path)
-        {
-        }
-    }
-
-    public class Put : OperationAttribute
-    {
-        public Put(string path)
-            : base("PUT", path)
-        {
-        }
     }
 }

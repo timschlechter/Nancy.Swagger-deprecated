@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Nancy.Swagger
+namespace Nancy.Swagger.Providers.Attributes
 {
-    public class NancyApiDiscoverer
+    internal class NancyApiDiscoverer
     {
         private IEnumerable<Type> AllTypes
         {

@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{AC9648
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Swagger.Tests.Unit", "Nancy.Swagger.Tests.Unit\Nancy.Swagger.Tests.Unit.csproj", "{9959881D-977B-4ECB-A12B-99AA38D4E7B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Swagger.Providers.Attributes", "Nancy.Swagger.Providers.Attributes\Nancy.Swagger.Providers.Attributes.csproj", "{442A6D34-FA20-450E-A9B7-65E469C6C723}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{9959881D-977B-4ECB-A12B-99AA38D4E7B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9959881D-977B-4ECB-A12B-99AA38D4E7B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9959881D-977B-4ECB-A12B-99AA38D4E7B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{442A6D34-FA20-450E-A9B7-65E469C6C723}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{442A6D34-FA20-450E-A9B7-65E469C6C723}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{442A6D34-FA20-450E-A9B7-65E469C6C723}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{442A6D34-FA20-450E-A9B7-65E469C6C723}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

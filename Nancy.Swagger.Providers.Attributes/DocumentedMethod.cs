@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
 
-namespace Nancy.Swagger
+namespace Nancy.Swagger.Providers.Attributes
 {
-    public class DocumentedMethod
+    internal class DocumentedMethod
     {
         public MethodBase Method { get; set; }
 

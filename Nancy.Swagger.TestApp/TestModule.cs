@@ -1,4 +1,5 @@
 ﻿using Nancy.ModelBinding;
+using Nancy.Swagger.Providers.Attributes;
 using Nancy.Swagger.TestApp.Model;
 
 namespace Nancy.Swagger.TestApp

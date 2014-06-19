@@ -7,8 +7,6 @@ namespace Nancy.Swagger
 {
     public class SwaggerModule : NancyModule
     {
-        private NancyApiDiscoverer _discoverer = new NancyApiDiscoverer();
-
         #region Static Helpers
 
         private Response CreateStreamedJsonResponse(dynamic model)
@@ -43,23 +41,13 @@ namespace Nancy.Swagger
 
         #region Constructors
 
-        public SwaggerModule(TinyIoc.TinyIoCContainer container)
+        public SwaggerModule(ISwaggerProvider provider)
             : base(StaticConfiguration.ModulePath)
         {
-            var types = _discoverer.GetModuleTypesToDocument();
-            var modules = types.Select(t => container.Resolve(t) as NancyModule);
-
-            var factory = new SwaggerFactory();
-
             // Register resource listing route
-            var resourceListing = factory.CreateResourceListing(modules, this.ModulePath);
-            Get["/"] = _ => CreateStreamedJsonResponse(resourceListing);
+            Get["/"] = _ => CreateStreamedJsonResponse(provider.GetResourceListing(this.ModulePath));
 
-            // Register an api declaration route for each module
-            var apiDelacations = modules.Select(module => factory.CreateApiDeclaration(module))
-                                        .OrderBy(a => a.ResourcePath);
-
-            foreach (var apiDeclaration in apiDelacations)
+            foreach (var apiDeclaration in provider.GetApiDeclarations())
             {
                 Get["/swagger" + apiDeclaration.BasePath] = _ => CreateStreamedJsonResponse(apiDeclaration);
             }

@@ -102,6 +102,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Nancy.Swagger.Providers.Attributes\Nancy.Swagger.Providers.Attributes.csproj">
+      <Project>{442a6d34-fa20-450e-a9b7-65e469c6c723}</Project>
+      <Name>Nancy.Swagger.Providers.Attributes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nancy.Swagger\Nancy.Swagger.csproj">
       <Project>{cf36efaa-88b0-4fa3-ba85-d54fa8003351}</Project>
       <Name>Nancy.Swagger</Name>

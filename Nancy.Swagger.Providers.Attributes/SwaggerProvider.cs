@@ -1,14 +1,15 @@
 ﻿using Nancy.Routing;
 using Nancy.Swagger.Model;
+using Nancy.TinyIoc;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Nancy.Swagger
+namespace Nancy.Swagger.Providers.Attributes
 {
-    public class SwaggerFactory
+    public class SwaggerProvider : ISwaggerProvider
     {
         #region Static Helpers
 
@@ -45,6 +46,43 @@ namespace Nancy.Swagger
 
         #endregion Static Helpers
 
+        #region Constructors
+
+        public SwaggerProvider(TinyIoCContainer container)
+        {
+            this.Container = container;
+        }
+
+        #endregion Constructors
+
+        #region Properties
+
+        public string SwaggerVersion { get { return "1.2"; } }
+
+        protected TinyIoCContainer Container { get; private set; }
+
+        #endregion Properties
+
+        #region ISwaggerProvider
+
+        public IEnumerable<ApiDeclaration> GetApiDeclarations()
+        {
+            var types = new NancyApiDiscoverer().GetModuleTypesToDocument();
+            var modules = types.Select(t => Container.Resolve(t) as NancyModule);
+
+            return modules.Select(module => CreateApiDeclaration(module)).OrderBy(a => a.ResourcePath);
+        }
+
+        public ResourceListing GetResourceListing(string basePath)
+        {
+            var types = new NancyApiDiscoverer().GetModuleTypesToDocument();
+            var modules = types.Select(t => Container.Resolve(t) as NancyModule);
+
+            return CreateResourceListing(modules, basePath);
+        }
+
+        #endregion ISwaggerProvider
+
         #region Methods
 
         public Api CreateApi(IEnumerable<Route> routes, NancyModule module)
@@ -66,7 +104,7 @@ namespace Nancy.Swagger
         {
             return new ApiDeclaration
             {
-                SwaggerVersion = StaticConfiguration.SwaggerVersion,
+                SwaggerVersion = SwaggerVersion,
                 BasePath = CreateRoutePath(module),
                 Models = CreateModels(module).ToDictionary(t => t.Id, t => t),
                 Apis = CreateApis(module),
@@ -80,23 +118,6 @@ namespace Nancy.Swagger
                          .GroupBy(r => r.Description.Path)
                          .Select(group => CreateApi(group, module))
                          .OrderBy(api => api.Path);
-        }
-
-        public IEnumerable<DocumentedMethod> CreateDocumentedMethods(NancyModule module)
-        {
-            foreach (var method in module.GetType().GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
-            {
-                var swagger = method.GetAttribute<OperationAttribute>();
-
-                if (swagger != null)
-                {
-                    yield return new DocumentedMethod
-                    {
-                        OperationAttribute = swagger,
-                        Method = method
-                    };
-                }
-            }
         }
 
         public Items CreateItems(Type type)
@@ -202,7 +223,7 @@ namespace Nancy.Swagger
         {
             return new ResourceListing
             {
-                SwaggerVersion = StaticConfiguration.SwaggerVersion,
+                SwaggerVersion = SwaggerVersion,
                 Apis = modules.Select(m => CreateResource(m)).OrderBy(a => a.Path)
             };
         }
@@ -212,6 +233,23 @@ namespace Nancy.Swagger
             var path = module.ModulePath.StartsWith("/") ? module.ModulePath : "/" + module.ModulePath;
 
             return path;
+        }
+
+        private IEnumerable<DocumentedMethod> CreateDocumentedMethods(NancyModule module)
+        {
+            foreach (var method in module.GetType().GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+            {
+                var swagger = method.GetAttribute<OperationAttribute>();
+
+                if (swagger != null)
+                {
+                    yield return new DocumentedMethod
+                    {
+                        OperationAttribute = swagger,
+                        Method = method
+                    };
+                }
+            }
         }
 
         private Parameter CreateParameter(ParameterInfo pi)

@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Nancy.Swagger
+namespace Nancy.Swagger.Providers.Attributes
 {
-    public static class Extensions
+    internal static class Extensions
     {
         #region Nancy.Swagger.DocumententMethod
 
