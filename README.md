@@ -1,7 +1,5 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/9lg2fvqccaxa2ssg/branch/master)](https://ci.appveyor.com/project/TimSchlechter/nancy-swagger)
 
-Add the [Nancy.Swagger package](https://www.nuget.org/packages/Nancy.Swagger/) to your API application to add an endpoint which provides a [Swagger](https://helloreverb.com/developers/swagger) [1.2 description](https://github.com/wordnik/swagger-spec/blob/master/versions/1.2.md) of your API.
-
 ## Usage
 ```
 public class Bootstrapper : DefaultNancyBootstrapper

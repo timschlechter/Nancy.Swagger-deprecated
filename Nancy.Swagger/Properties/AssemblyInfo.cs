@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following set of attributes.
 // Change these attribute values to modify the information associated with an assembly.
 [assembly: AssemblyTitle("Nancy.Swagger")]
-[assembly: AssemblyDescription("Provides a NancyModule which servers swagger documentation Json for the Nancy modules in your application")]
+[assembly: AssemblyDescription("Add the Nancy.Swagger package to your API application to add an endpoint which provides a Swagger 1.2 description of your API.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Tim Schlechter")]
 [assembly: AssemblyProduct("Nancy.Swagger")]
